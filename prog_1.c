@@ -36,3 +36,8 @@ bool pop(Stack *s, char *ch) {
     *ch = s->data[(s->top)--];
     return true;
 }
+bool isMatchingPair(char open, char close) {
+    return (open == '(' && close == ')') ||
+           (open == '[' && close == ']') ||
+           (open == '{' && close == '}');
+}
