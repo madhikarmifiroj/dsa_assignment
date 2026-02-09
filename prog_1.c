@@ -41,7 +41,7 @@ bool isMatchingPair(char open, char close) {
            (open == '[' && close == ']') ||
            (open == '{' && close == '}');
 }
-ool isBalanced(const char *expr) {
+bool isBalanced(const char *expr) {
     Stack s;
     initStack(&s);
 
