@@ -79,3 +79,15 @@ void testExpression(const char *expr) {
         printf("Result: Not balanced\n\n");
     }
 }
+int main(void) {
+   
+    char input[MAX];
+    printf("Enter your own expression to test: ");
+    if (fgets(input, sizeof(input), stdin) != NULL) {
+        // Remove trailing newline if present
+        input[strcspn(input, "\n")] = '\0';
+        testExpression(input);
+    }
+
+    return 0;
+}
