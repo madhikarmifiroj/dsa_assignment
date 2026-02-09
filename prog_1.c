@@ -71,3 +71,11 @@ ool isBalanced(const char *expr) {
 
     return isEmpty(&s);
 }
+void testExpression(const char *expr) {
+    printf("Expression: %s\n", expr);
+    if (isBalanced(expr)) {
+        printf("Result: Balanced\n\n");
+    } else {
+        printf("Result: Not balanced\n\n");
+    }
+}
