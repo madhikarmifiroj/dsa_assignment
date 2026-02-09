@@ -41,3 +41,33 @@ bool isMatchingPair(char open, char close) {
            (open == '[' && close == ']') ||
            (open == '{' && close == '}');
 }
+ool isBalanced(const char *expr) {
+    Stack s;
+    initStack(&s);
+
+    for (int i = 0; expr[i] != '\0'; i++) {
+        char ch = expr[i];
+
+        
+        if (ch == '(' || ch == '[' || ch == '{') {
+            if (!push(&s, ch)) {
+                return false;
+            }
+        }
+        
+        else if (ch == ')' || ch == ']' || ch == '}') {
+            char topChar;
+            if (!pop(&s, &topChar)) {
+                
+                return false;
+            }
+            if (!isMatchingPair(topChar, ch)) {
+                
+                return false;
+            }
+        }
+    }
+
+
+    return isEmpty(&s);
+}
