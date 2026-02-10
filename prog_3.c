@@ -18,17 +18,17 @@ Node *createNode(int data) { /* as in final code */ }
 void insertAtEnd(Node **head, int data) { /* as in final code */ }
 void printList(Node *head) { /* as in final code */ }
 void freeList(Node *head) { /* as in final code */ }
+void printListReverse(Node *head) {
+    if (head == NULL) return;
+    printListReverse(head->next);
+    printf("%d ", head->data);
+}
 
 int main(void) {
     Node *head = NULL;
-
-    insertAtEnd(&head, 10);
-    insertAtEnd(&head, 20);
-    insertAtEnd(&head, 30);
-    insertAtEnd(&head, 40);
-
-    printList(head);   // Forward only
-
-    freeList(head);
+    printList(head);
+    printf("Reverse traversal: ");
+    printListReverse(head);
+    printf("\n");
     return 0;
 }
