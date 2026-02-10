@@ -42,3 +42,45 @@ int getPrecedence(char op) {
         default: return 0;
     }
 }
+void infixToPostfix(char* infix, char* postfix) {
+    CharStack s;
+    s.top = -1;
+    int i = 0, j = 0;
+
+    while (infix[i] != '\0') {
+        char token = infix[i];
+
+        // If operand, add to output (handles multi-digit by adding spaces)
+        if (isdigit(token)) {
+            while (isdigit(infix[i])) {
+                postfix[j++] = infix[i++];
+            }
+            postfix[j++] = ' '; // Space separator for evaluation
+            i--; 
+        } 
+        else if (token == '(') {
+            pushChar(&s, '(');
+        } 
+        else if (token == ')') {
+            while (s.top != -1 && peekChar(&s) != '(') {
+                postfix[j++] = popChar(&s);
+                postfix[j++] = ' ';
+            }
+            popChar(&s); // Pop '('
+        } 
+        else if (strchr("+-*/^", token)) { // Operator
+            while (s.top != -1 && getPrecedence(peekChar(&s)) >= getPrecedence(token)) {
+                postfix[j++] = popChar(&s);
+                postfix[j++] = ' ';
+            }
+            pushChar(&s, token);
+        }
+        i++;
+    }
+
+    while (s.top != -1) {
+        postfix[j++] = popChar(&s);
+        postfix[j++] = ' ';
+    }
+    postfix[j - 1] = '\0'; // Null terminate
+}
