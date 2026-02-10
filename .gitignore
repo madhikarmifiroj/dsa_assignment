@@ -1,0 +1,6 @@
+# C build artifacts
+*.o
+*.out
+a.out
+prog_final.out
+prog_1.out
