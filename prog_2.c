@@ -106,3 +106,17 @@ void infixToPostfix(char* infix, char* postfix) {
     }
     return popDouble(&s);
 }
+int main() {
+    char infix[MAX] = "(3+4)*2^3";
+    char postfix[MAX];
+
+    printf("Infix:   %s\n", infix);
+    
+    infixToPostfix(infix, postfix);
+    printf("Postfix: %s\n", postfix);
+
+    double result = evaluatePostfix(postfix);
+    printf("Result:  %.2f\n", result);
+
+    return 0;
+}
