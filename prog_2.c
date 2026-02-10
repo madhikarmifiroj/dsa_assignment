@@ -15,3 +15,22 @@ typedef struct {
     int top;
     double items[MAX];
 } DoubleStack;
+void pushChar(CharStack *s, char c) {
+    s->items[++(s->top)] = c;
+}
+
+char popChar(CharStack *s) {
+    return s->items[(s->top)--];
+}
+
+char peekChar(CharStack *s) {
+    return s->items[s->top];
+}
+
+void pushDouble(DoubleStack *s, double d) {
+    s->items[++(s->top)] = d;
+}
+
+double popDouble(DoubleStack *s) {
+    return s->items[(s->top)--];
+}
