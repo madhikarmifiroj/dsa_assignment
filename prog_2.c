@@ -83,4 +83,26 @@ void infixToPostfix(char* infix, char* postfix) {
         postfix[j++] = ' ';
     }
     postfix[j - 1] = '\0'; // Null terminate
+}double evaluatePostfix(char* postfix) {
+    DoubleStack s;
+    s.top = -1;
+    char* token = strtok(postfix, " ");
+
+    while (token != NULL) {
+        if (isdigit(token[0])) {
+            pushDouble(&s, atof(token));
+        } else {
+            double val2 = popDouble(&s);
+            double val1 = popDouble(&s);
+            switch (token[0]) {
+                case '+': pushDouble(&s, val1 + val2); break;
+                case '-': pushDouble(&s, val1 - val2); break;
+                case '*': pushDouble(&s, val1 * val2); break;
+                case '/': pushDouble(&s, val1 / val2); break;
+                case '^': pushDouble(&s, pow(val1, val2)); break;
+            }
+        }
+        token = strtok(NULL, " ");
+    }
+    return popDouble(&s);
 }
